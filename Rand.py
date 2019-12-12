@@ -2,7 +2,7 @@ loop = True;
 factor = 1.609
 while loop:
 
-	try
+	try:
 		print("Would you like to convert Kilometers or Miles?")
 		userin = input()	
 		if userin == "Kilometers" or userin == "kilometers":
@@ -22,3 +22,4 @@ while loop:
 			loop = False
 
 	except Some:
+		printf("ur mum gay");
