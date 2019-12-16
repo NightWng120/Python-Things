@@ -7,11 +7,11 @@ class Checker:
 		self.alive = True;
 		self.position = (0,0);
 		self.king = False;
-	def move(pos, later):
+	def move(self,pos, later):
 		
 		
 		
-	def slope(pos, later):
+	def slope(self,pos, later):
 		 
 		slope = pos[1] - 
 	

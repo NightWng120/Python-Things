@@ -43,8 +43,25 @@ for j in range(1, len(strings), 2):
 print(arraypos);
 print(len(arraypos));
 arraycheckers = list();
+arraycheckers_real = list();
 for i in arraypos:
 	if strings[i[0]][i[1]] == "*":
 		arraycheckers.append([round((i[0] + 1)/2),round((i[1]+2)/4)]);
-
+		arraycheckers_real.append([i[0],i[1]]);
 print(arraycheckers);
+print();
+print(arraycheckers_real);
+
+for i in arraycheckers_real:
+
+	if strings[i[0]][i[1]] == "*" and i[0] < 6:
+		strings[i[0]] = strings[i[0]].replace("*", "O");
+
+	elif  strings[i[0]][i[1]] == "*" and i[0] > 10:
+		strings[i[0]] = strings[i[0]].replace("*", "0");
+for i in strings:
+	print(i);
+
+
+
+		
