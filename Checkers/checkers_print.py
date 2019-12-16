@@ -7,38 +7,48 @@ def convert(strings):
 		string_list.append(words);
 		words = "";
 	return string_list;
-val = True;
-string = list("|-------------------------------|");
-strings = list();
-strings.append(string);
-for j in range(0,8):
-	string = list();
-	for i in range(0, 17):
-		if (i+1)%2 == 0 and val:
-			val = False;
-			string.extend(list(" * "));
-		elif (i+1)%2 == 0 and not val:
-			val = True;
-			string.extend(list("   "));
-		else:
-			string.extend(list("|"));
-	val = not val;
+
+def board():
+	val = True;
+	string = list("|-------------------------------|");
+	strings = list();
 	strings.append(string);
-	if j > 6:
-		strings.append(list("|-------------------------------|"));
-		continue;	
-	strings.append(list("|---|---|---|---|---|---|---|---|"));
+	for j in range(0,8):
+		string = list();
+		for i in range(0, 17):
+			if (i+1)%2 == 0 and val:
+				val = False;
+				string.extend(list(" * "));
+			elif (i+1)%2 == 0 and not val:
+				val = True;
+				string.extend(list("   "));
+			else:
+				string.extend(list("|"));
+		val = not val;
+		strings.append(string);
+		if j > 6:
+			strings.append(list("|-------------------------------|"));
+			continue;	
+		strings.append(list("|---|---|---|---|---|---|---|---|"));
+	return strings;
+
+def print_board(string_list):
+	count = 0;
+	for i, val in enumerate(string_list):
+		if (i+1)%2 == 0:
+			print(f"{count+1} {val}");
+			count+=1;
+		else:
+			print(f"  {val}");
+		if i > 15:
+			print("    A   B   C   D   E   F   G   H  ");
+
+strings = board();
 string_list = convert(strings);
+
+print_board(string_list);
+
 arraypos = list();
-count = 0;
-for i, val in enumerate(string_list):
-	if (i+1)%2 == 0:
-		print(f"{count+1} {val}");
-		count+=1;
-	else:
-		print(f"  {val}");
-	if i > 15:
-		print("    A   B   C   D   E   F   G   H  ");
 for j in range(1, len(string_list), 2):
 	skip = 0;
 	thing = True;
@@ -62,19 +72,43 @@ for i in arraypos:
 print(arraypoten);
 print();
 print(arraypoten_real);
-arraycheckers = list();
+arraycheckersR = list();
+arraycheckersB = list();
+arraycheckersR_real = list();
+arraycheckersB_real = list();
 for i in arraypoten_real:
 
 	if strings[i[0]][i[1]] == "*" and i[0] < 6:
 		strings[i[0]][i[1]] = "O";
-		arraycheckers.append([i[0],i[1]]);
+		arraycheckersR_real.append([i[0],i[1]]);
+		arraycheckersR.append([round((i[0] + 1)/2),round((i[1]+2)/4)]);
 	elif  strings[i[0]][i[1]] == "*" and i[0] > 10:
 		strings[i[0]][i[1]] = "0";
-		arraycheckers.append([i[0],i[1]]);
+		arraycheckersB_real.append([i[0],i[1]]);
+		arraycheckersB.append([round((i[0] + 1)/2),round((i[1]+2)/4)]);
 for i in strings:
 	print(i);
-print(arraycheckers);
-string_list = convert(strings);
-for i in string_list:
+print(arraycheckersR);
+print(arraycheckersR_real);
+print(arraycheckersB);
+print(arraycheckersB_real);
+for i, val in enumerate(arraycheckersR_real):
 	print(i);
+	if val == [5,2]:
+		arraycheckersR_real.pop(i);
+		arraycheckersR_real.insert(i, [7,6]);
+print(arraycheckersR_real);
+	
+strings = board();
+for i in arraycheckersR_real:
+
+	if strings[i[0]][i[1]] == "*":
+		strings[i[0]][i[1]] = "O";
+
+for i in arraycheckersB_real:
+
+	if strings[i[0]][i[1]] == "*":
+		strings[i[0]][i[1]] = "0";
+string_list = convert(strings);
+print_board(string_list);
 		
