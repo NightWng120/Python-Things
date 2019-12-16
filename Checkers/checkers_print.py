@@ -42,11 +42,34 @@ def print_board(string_list):
 			print(f"  {val}");
 		if i > 15:
 			print("    A   B   C   D   E   F   G   H  ");
+def update(arraycheckers_real, strings, boolean):
+	
+	for i in arraycheckers_real:
 
+		if strings[i[0]][i[1]] == "*":
+			if boolean:
+				strings[i[0]][i[1]] = "O";
+			elif not boolean:
+				
+				strings[i[0]][i[1]] = "0";
+	return strings;
+def move(pos, later, listR, listB):
+	print(listR);
+	print(listB);
+	for i, val in enumerate(listR):
+		if val == pos:
+			listR.pop(i);
+			listR.insert(i, later);
+			return True;
+	for j, item in enumerate(listB):
+		if item == pos:
+			listB.pop(j);
+			listB.insert(j, later);
+			return True;
+	return False;
 strings = board();
 string_list = convert(strings);
 
-print_board(string_list);
 
 arraypos = list();
 for j in range(1, len(string_list), 2):
@@ -60,8 +83,6 @@ for j in range(1, len(string_list), 2):
 			continue;
 		skip += 4;
 		arraypos.append([j,skip]);
-print(arraypos);
-print(len(arraypos));
 	
 arraypoten = list();
 arraypoten_real = list();
@@ -69,9 +90,6 @@ for i in arraypos:
 	if strings[i[0]][i[1]] == "*":
 		arraypoten.append([round((i[0] + 1)/2),round((i[1]+2)/4)]);
 		arraypoten_real.append([i[0],i[1]]);
-print(arraypoten);
-print();
-print(arraypoten_real);
 arraycheckersR = list();
 arraycheckersB = list();
 arraycheckersR_real = list();
@@ -86,29 +104,33 @@ for i in arraypoten_real:
 		strings[i[0]][i[1]] = "0";
 		arraycheckersB_real.append([i[0],i[1]]);
 		arraycheckersB.append([round((i[0] + 1)/2),round((i[1]+2)/4)]);
-for i in strings:
-	print(i);
-print(arraycheckersR);
-print(arraycheckersR_real);
-print(arraycheckersB);
-print(arraycheckersB_real);
-for i, val in enumerate(arraycheckersR_real):
-	print(i);
-	if val == [5,2]:
-		arraycheckersR_real.pop(i);
-		arraycheckersR_real.insert(i, [7,6]);
-print(arraycheckersR_real);
+loop = True;
 	
 strings = board();
-for i in arraycheckersR_real:
-
-	if strings[i[0]][i[1]] == "*":
-		strings[i[0]][i[1]] = "O";
-
-for i in arraycheckersB_real:
-
-	if strings[i[0]][i[1]] == "*":
-		strings[i[0]][i[1]] = "0";
+strings = update(arraycheckersR_real, strings, True);
+strings = update(arraycheckersB_real, strings, False);
 string_list = convert(strings);
-print_board(string_list);
-		
+while loop:
+	print_board(string_list);
+	print("Move a piece");
+	userin = input();
+	userin = userin.split(" ");
+	pos = list(userin[0]);
+	later = list(userin[1]);
+	
+	pos[0] = 2*int(pos[0]) - 1;
+	later[0] = 2*int(later[0]) - 1;
+	pos[1] = 4*int(pos[1]) - 2;
+	later[1] = 4*int(later[1]) - 2;
+	print(pos);
+	print(later);
+	if move(pos, later, arraycheckersR_real, arraycheckersB_real):
+		strings = board();
+		strings = update(arraycheckersR_real, strings, True);
+		strings = update(arraycheckersB_real, strings, False);
+		string_list = convert(strings);
+		print_board(string_list);
+		continue;
+	else:
+		print("Invalid move");
+		continue;
