@@ -78,21 +78,26 @@ class Player:
 		return False;
 	def user_in(self,userin):
 		alpha = string.ascii_lowercase
-		userin = userin.split(" ");
 		pos = list(userin[0]);
 		later = list(userin[1]);
+		out = [False,False];
 		for i in alpha:
+			print(f"Pos[0]: {pos[0].isalpha()}\nPos[1]: {pos[1].isalpha()}\n");
+			print(f"Later[0]: {later[0].isalpha()}\nLater[1]: {later[1].isalpha()}\n");
 			if i == pos[1] and pos[1].isalpha() and not pos[0].isalpha():
+				print("Inside pos if");
 				pos[1] = 4*((ord(i) - ord('h')) + 8)-2;
 				pos[0] = 2*int(pos[0]) - 1;
-			else:
-				return False, False;
+				out[0] = True;
 			if i == later[1] and later[1].isalpha() and not later[0].isalpha():
+				print("Inside later if");
 				later[1] = 4*((ord(i) - ord('h')) + 8)-2;
 				later[0] = 2*int(later[0]) - 1;
-			else:
-				return False, False;
-		return pos, later;
+				out[1] = True;
+		if(out[0] and out[1]):	
+			return pos, later;
+		else:
+			return False,False;
 	def gen(self,string_list, strings,color):
 		arraypos = list();
 		for j in range(1, len(string_list), 2):
@@ -160,6 +165,11 @@ class Player:
 			self.print_board(string_list);
 			print("Move a piece");
 			userin = input();
+			if userin == "quit":
+				return 0;
+			userin = userin.split(" ");
+			print("Userin[0]: " + userin[0]);
+			print("Userin[1]: " + userin[1]);
 			pos, later = self.user_in(userin);
 			print(pos);
 			print(later);

@@ -13,6 +13,9 @@ while loop:
 	print("\n");
 	print(": ", end = "");
 	userin = input();
+	if userin == "quit":
+		loop = False;
+		continue;
 	if userin == "1":
 		player1 = player.Player("Red", True);
 		player2 = player.Player("Black", False);
