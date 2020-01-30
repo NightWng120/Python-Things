@@ -66,3 +66,7 @@ for char in "exit":
 
 keyboard.press(Key.enter)
 keyboard.release(Key.enter)
+
+with keyboard.pressed(Key.alt):
+	keyboard.press(Key.tab)
+	keyboard.release(Key.tab)
