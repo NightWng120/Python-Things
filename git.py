@@ -36,6 +36,15 @@ keyboard.press(Key.enter)
 keyboard.release(Key.enter)
 
 
+
+time.sleep(5)
+for char in "git pull origin master":
+	keyboard.press(char)
+	keyboard.release(char)
+	time.sleep(.1)
+keyboard.press(Key.enter)
+keyboard.release(Key.enter)
+
 time.sleep(5)
 for char in "git add *":
 	keyboard.press(char)
