@@ -17,7 +17,7 @@ for char in "cmd.exe":
 keyboard.press(Key.enter)
 keyboard.release(Key.enter)
 
-time.sleep(5)
+time.sleep(2)
 for char in userin:
 	keyboard.press(char)
 	keyboard.release(char)
@@ -34,27 +34,27 @@ keyboard.release(Key.enter)
 
 
 
-time.sleep(5)
+time.sleep(2)
 for char in "git pull origin master":
 	keyboard.press(char)
 	keyboard.release(char)
 keyboard.press(Key.enter)
 keyboard.release(Key.enter)
 
-time.sleep(5)
+time.sleep(2)
 for char in "git add *":
 	keyboard.press(char)
 	keyboard.release(char)
 keyboard.press(Key.enter)
 keyboard.release(Key.enter)
 
-time.sleep(5)
+time.sleep(2)
 for char in "git commit -m \"m\" ":
 	keyboard.press(char)
 	keyboard.release(char)
 keyboard.press(Key.enter)
 keyboard.release(Key.enter)
-time.sleep(5)
+time.sleep(2)
 for char in "git push origin master":
 	keyboard.press(char)
 	keyboard.release(char)
