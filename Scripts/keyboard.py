@@ -22,7 +22,10 @@ time.sleep(2)
 with keyboard.pressed(Key.cmd):
 	keyboard.press('r')
 	keyboard.release('r')
-time.sleep(2)
+time.sleep(1)
+for char in "chrome.exe":
+	keyboard.press(char)
+	keyboard.release(char)
 keyboard.press(Key.enter);
 keyboard.release(Key.enter)
 time.sleep(5)
@@ -42,6 +45,7 @@ while i > 0:
 	i = i - 1
 time.sleep(3)
 keyboard.press(Key.enter)
+keyboard.release(Key.enter)
 time.sleep(10)
 for char in "trevholm@iu.edu":
 	keyboard.press(char)
@@ -65,3 +69,10 @@ keyboard.release(Key.tab)
 time.sleep(1)
 keyboard.press(Key.enter)
 keyboard.release(Key.enter)
+time.sleep(2)
+with keyboard.pressed(Key.alt):
+	keyboard.press(Key.f4)
+	keyboard.release(Key.f4)
+with keyboard.pressed(Key.alt):
+	keyboard.press(Key.tab)
+	keyboard.release(Key.tab)
