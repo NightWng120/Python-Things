@@ -42,7 +42,7 @@ while i > 0:
 	i = i - 1
 time.sleep(3)
 keyboard.press(Key.enter)
-time.sleep(3)
+time.sleep(10)
 for char in "trevholm@iu.edu":
 	keyboard.press(char)
 	keyboard.release(char)
