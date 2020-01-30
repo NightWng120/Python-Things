@@ -62,3 +62,6 @@ for char in "exit":
 	keyboard.press(char)
 	keyboard.release(char)
 	time.sleep(.1)
+
+keyboard.press(Key.enter)
+keyboard.release(Key.enter)
