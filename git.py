@@ -3,7 +3,7 @@ import time
 
 keyboard = Controller()
 
-print("What repository would you like to push?")
+print("What repository would you like to update and push?")
 userin = input()
 userin =  "cd C:/Users/treve/documents/" + userin
 with keyboard.pressed(Key.cmd):
