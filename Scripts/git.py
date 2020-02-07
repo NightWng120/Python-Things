@@ -1,10 +1,35 @@
 from pynput.keyboard import Key, Controller
 import time
+import sys
 
 keyboard = Controller()
 
-print("What repository would you like to update and push?")
+print("|-------------------------|")
+print("|  Which repository would |")
+print("|     you like to push?   |")
+print("|-------------------------|")
+print("| 1) python-things        |")
+print("| 2) coolstuff            |")
+print("| 3) Chess                |")
+print("| 4) Other                |")
+print("| 5) Quit                 |")
+print("|-------------------------|")
+print("")
+print(": ",end = '')
 userin = input()
+print("")
+if userin == "1":
+	userin = "python-things"
+elif userin == "2":
+	userin = "coolstuff"
+elif userin == "3":
+	userin = "Chess"
+elif userin == "4":
+	print("Enter repository name")
+	userin = input()
+elif userin == "5":
+	sys.exit()
+
 userin =  "cd C:/Users/treve/documents/" + userin
 with keyboard.pressed(Key.cmd):
 	keyboard.press('r')
